@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/root/.WebStorm6/config'
+let g:netrw_dirhist_2='/root/.mozilla/eclipse'
+let g:netrw_dirhist_3='/root'
+let g:netrw_dirhist_4='/http'
+let g:netrw_dirhist_5='/root/.mozilla/eclipse'
+let g:netrw_dirhist_6='/http/skimium'
+let g:netrw_dirhist_7='/root/.vim/after/plugin'
+let g:netrw_dirhist_8='/root/.WebStorm6/config'

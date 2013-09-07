@@ -1,0 +1,9 @@
+imap { {<CR>.<CR>}<UP><LEFT><DEL><SPACE><SPACE>
+imap ( ()<LEFT>
+s/[()]+/[/
+s/[()]\+/[/
+imap [ []<LEFT>
+imap <CR> <CR>.<CR><UP><LEFT><DEL><SPACE><SPACE>
+imap <Enter> <CR>.<CR><UP><LEFT><DEL><SPACE><SPACE>
+imap <CR> <CR>
+imap <Enter> <Enter>.<Enter><UP><LEFT><DEL><SPACE><SPACE>

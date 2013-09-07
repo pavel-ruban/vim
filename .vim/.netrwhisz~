@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/mnt/misc/develop/sites/all'
+let g:netrw_dirhist_2='/mnt/misc/develop/sites'
+let g:netrw_dirhist_3='/mnt/misc/develop/sites/all'
+let g:netrw_dirhist_4='/mnt/misc/develop/sites/all/modules/custom'
+let g:netrw_dirhist_5='/mnt/misc/develop/sites/all/modules/custom/le_site'
+let g:netrw_dirhist_6='/mnt/misc/develop/sites/all/modules/custom'
+let g:netrw_dirhist_7='/mnt/misc/develop/sites/all/modules/custom/le_site'
+let g:netrw_dirhist_8='/mnt/misc/develop/sites/all/modules/custom'
+let g:netrw_dirhist_9='/mnt/misc/develop/sites/all/modules/custom/pavelruban'
