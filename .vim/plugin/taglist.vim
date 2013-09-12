@@ -1414,22 +1414,22 @@ function! s:Tlist_Window_Exit_Only_Window()
     " Before quitting Vim, delete the taglist buffer so that
     " the '0 mark is correctly set to the previous buffer.
     if v:version < 700
-	if winbufnr(2) == -1
-	    bdelete
-	    quit
-	endif
+  if winbufnr(2) == -1
+      bdelete
+      quit
+  endif
     else
-	if winbufnr(2) == -1
-	    if tabpagenr('$') == 1
-		" Only one tag page is present
-		bdelete
-		quit
-	    else
-		" More than one tab page is present. Close only the current
-		" tab page
-		close
-	    endif
-	endif
+  if winbufnr(2) == -1
+      if tabpagenr('$') == 1
+    " Only one tag page is present
+    bdelete
+    quit
+      else
+    " More than one tab page is present. Close only the current
+    " tab page
+    close
+      endif
+  endif
     endif
 endfunction
 
@@ -1668,8 +1668,8 @@ function! s:Tlist_Window_Init()
         endif
         " Exit Vim itself if only the taglist window is present (optional)
         if g:Tlist_Exit_OnlyWindow
-	    autocmd BufEnter __Tag_List__ nested
-			\ call s:Tlist_Window_Exit_Only_Window()
+      autocmd BufEnter __Tag_List__ nested
+      \ call s:Tlist_Window_Exit_Only_Window()
         endif
         if s:tlist_app_name != "winmanager" &&
                     \ !g:Tlist_Process_File_Always &&
@@ -2505,6 +2505,16 @@ function! Tlist_Update_File(filename, ftype)
     endif
 endfunction
 
+function! s:Netrw_Window_Open()
+  exe 'silent! topleft vertical ' .  g:netrw_win_width . ' split projects'
+  if exists('g:netrw_previous_path') && g:netrw_previous_path != ''
+    exe 'e! ' . g:netrw_previous_path
+  else
+    exe 'r! find /http -mindepth 1 -maxdepth 1 -type d'
+    nnoremap <buffer> <silent> <2-LeftMouse> :exe 'e! ' . expand('<cfile>')<cr>
+  endif
+endfunction
+
 " Tlist_Window_Close
 " Close the taglist window
 function! s:Netrw_Window_Close()
@@ -2528,6 +2538,7 @@ function! s:Netrw_Window_Close()
             " If a window other than the taglist window is open,
             " then only close the taglist window.
             exec ":mkview"
+            let g:netrw_previous_path = getcwd()
             close
         endif
     else
@@ -2535,6 +2546,7 @@ function! s:Netrw_Window_Close()
         " original window
         let curbufnr = bufnr('%')
         exe winnum . 'wincmd w'
+        let g:netrw_previous_path = getcwd()
         exec ":mkview"
         close
         " Need to jump back to the original window only if we are not
@@ -2550,7 +2562,7 @@ endfunction
 " Close the taglist window
 function! s:Project_Window_Close()
     " Make sure the taglist window exists
-    let winnum = bufwinnr(".vimprjs")
+    let winnum = bufwinnr("projects")
     if winnum == -1
         call s:Tlist_Warning_Msg('Error: Project window is not open')
         return
@@ -2562,7 +2574,7 @@ function! s:Project_Window_Close()
             " If a window other than the taglist window is open,
             " then only close the taglist window.
             exec ":mkview"
-            close
+            close!
         endif
     else
         " Goto the taglist window, close it and then come back to the
@@ -2570,7 +2582,7 @@ function! s:Project_Window_Close()
         let curbufnr = bufnr('%')
         exe winnum . 'wincmd w'
         exec ":mkview"
-        close
+        close!
         " Need to jump back to the original window only if we are not
         " already in that window
         let winnum = bufwinnr(curbufnr)
@@ -2686,7 +2698,7 @@ function! s:Tlist_Window_Toggle()
     " If taglist window is open then close it.
     let winnum = bufwinnr(g:TagList_title)
     let curbufnum = bufnr('%')
-    let project_winnum = bufwinnr(".vimprjs")
+    let project_winnum = bufwinnr("projects")
     let netrw_winnum = bufwinnr("NetrwTreeListing")
     if netrw_winnum == -1
       let check_cur_buf = buffer_name('%')
@@ -2714,15 +2726,16 @@ function! s:Tlist_Window_Toggle()
     endif
 
     call s:Tlist_Window_Open()
+    call s:Netrw_Window_Open()
 
-    exec ":wincmd s"
-    exec ":wincmd w"
-    exec ":e ~/.vimprjs"
-    exec ":loadview"
-    if !exists("s:prjs_map")
-      let s:prjs_map = 1
-      exec ':map <buffer> <silent> <2-LeftMouse> :exe "e " . expand("<cWORD>")<CR>'
-    endif
+    "exec ":wincmd s"
+""    exec ":wincmd w"
+""    exec ":e ~/.vimprjs"
+""    exec ":loadview"
+""    if !exists("s:prjs_map")
+""      let s:prjs_map = 1
+""""      exec ':map <buffer> <silent> <2-LeftMouse> :exe "e " . expand("<cWORD>")<CR>'
+""    endif
     " Go back to the original window, if Tlist_GainFocus_On_ToggleOpen is not
     " set
     let curwinnum = bufwinnr(curbufnum)

@@ -236,21 +236,20 @@ function! DQouteInput()
 endfunction
 
 function! AutoNetrwLocate()
-  let path = getcwd()
-  echo 'dada'
-  "exe '2 wincmd w'
-  "exe 'e ' . path
-  "exe '1 wincmd w'
+ let path = getcwd()
+ let netrwWinNum = bufwinnr('NetrwTreeListing')
+ let filename = expand('%p')
+ let curbufnum = bufnr('%')
+ let curwinnum = bufwinnr(curbufnum)
+"" echo curbufnum . ' ' . netrwWinNum . ' ' . curwinnum
 
-"""  let netrwWinNum = bufwinnr('NetrwTreeListing')
-"  let curbufnum = bufnr('%')
-"  let curwinnum = bufwinnr(curbufnum)
-"
-"  if (and(netrwWinNum != -1, netrwWinNum != curwinnum))
-"    exe netrwWinNum . 'wincmd w'
-"    exe \"e " . path
-"    exe curwinnum . 'wincmd w'
-"  endif
+  if (and(netrwWinNum != -1, netrwWinNum != curwinnum))
+    exe netrwWinNum . 'wincmd w'
+    exe "e " . path
+    exe 'call search("' . filename . '")'
+    exe "normal! zz"
+    exe curwinnum . 'wincmd w'
+  endif
 endfunction
 
 "Commands :
