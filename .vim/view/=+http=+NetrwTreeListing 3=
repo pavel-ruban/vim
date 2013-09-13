@@ -30,7 +30,7 @@ setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
+setlocal colorcolumn=121
 setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
 setlocal commentstring=/*%s*/
 setlocal complete=.,w,b,u,t,i
@@ -113,7 +113,7 @@ setlocal tabstop=33
 setlocal tags=
 setlocal textwidth=0
 setlocal thesaurus=
-setlocal noundofile
+setlocal undofile
 setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal nowrap

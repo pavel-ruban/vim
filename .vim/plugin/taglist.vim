@@ -2538,7 +2538,7 @@ function! s:Netrw_Window_Close()
             " If a window other than the taglist window is open,
             " then only close the taglist window.
             exec ":mkview"
-            let g:netrw_previous_path = getcwd()
+            let g:netrw_previous_path = b:netrw_curdir
             close
         endif
     else
@@ -2546,7 +2546,7 @@ function! s:Netrw_Window_Close()
         " original window
         let curbufnr = bufnr('%')
         exe winnum . 'wincmd w'
-        let g:netrw_previous_path = getcwd()
+        let g:netrw_previous_path = b:netrw_curdir
         exec ":mkview"
         close
         " Need to jump back to the original window only if we are not

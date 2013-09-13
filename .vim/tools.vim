@@ -252,6 +252,41 @@ function! AutoNetrwLocate()
   endif
 endfunction
 
+fun! SearchFile()
+  if (exists('b:netrw_curdir'))
+    let s:path = b:netrw_curdir
+  else
+    let s:path = getcwd()
+  endif
+
+  let s:pattern = input('enter file pattern: ', '')
+  exe 'silent botright 10 split found-files:'
+  exe 'silent r! find ' . s:path . ' -type f -name "*' . s:pattern . '*"'
+  map <buffer> <silent> <CR> :call FileOpenPath()<CR>
+  map <buffer> <silent> <2-LeftMouse> :call FileOpenPath()<CR>
+endfun
+
+fun! SearchPattern()
+  if (exists('b:netrw_curdir'))
+    let s:path = b:netrw_curdir
+  else
+    let s:path = getcwd()
+  endif
+
+  let s:pattern = input('enter search pattern: ', '')
+  let s:temp_path = g:grep_path_custom
+  let g:grep_path_custom= s:path
+
+  exe 'silent Rgrep ' . s:pattern
+  let g:grep_path_custom = s:temp_path
+endfun
+
+fun! FileOpenPath()
+  let filepath = getline(line('.'))
+  exe 'wincmd p'
+  exe 'e! ' . filepath
+endfun
+
 "Commands :
 nnoremap <silent> <S-TAB> :call MRU_toggle()<CR>
 
@@ -261,5 +296,7 @@ imap <silent> { <C-R>=ObjectInput()<CR>
 imap <silent> ' <C-R>=QouteInput()<CR>
 imap <silent> " <C-R>=DQouteInput()<CR>
 imap <silent> <CR> <C-R>=CleverEnter()<CR>
+nmap <silent> <leader>s :call SearchPattern()<CR>
+nmap <silent> <leader>f :call SearchFile()<CR>
 imap  <BS> <C-R>=CleverBackSpace()<CR>
 nmap <silent> <M-TAB> :OScan changes<CR>
