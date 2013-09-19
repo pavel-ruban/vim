@@ -2506,12 +2506,14 @@ function! Tlist_Update_File(filename, ftype)
 endfunction
 
 function! s:Netrw_Window_Open()
+  let s:parentWindowPath = getcwd()
   exe 'silent! topleft vertical ' .  g:netrw_win_width . ' split projects'
   if exists('g:netrw_previous_path') && g:netrw_previous_path != ''
     exe 'e! ' . g:netrw_previous_path
   else
-    exe 'r! find /http -mindepth 1 -maxdepth 1 -type d'
-    nnoremap <buffer> <silent> <2-LeftMouse> :exe 'e! ' . expand('<cfile>')<cr>
+    exe 'e! ' . s:parentWindowPath
+    "exe 'r! find /http -mindepth 1 -maxdepth 1 -type d'
+    "nnoremap <buffer> <silent> <2-LeftMouse> :exe 'e! ' . expand('<cfile>')<cr>
   endif
 endfunction
 
