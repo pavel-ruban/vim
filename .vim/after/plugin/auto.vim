@@ -9,3 +9,7 @@ let g:vdebug_options["marker_open_tree"]='-'
 let g:vdebug_options["break_on_open"]=0
 
 exec 'SyntasticToggleMode'
+colorscheme tir_black
+colorscheme grb256
+setlocal spell spelllang=en_us
+hi SpellBad guisp=#ffff00 guifg=NONE

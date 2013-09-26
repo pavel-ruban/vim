@@ -14,3 +14,15 @@ plugin
 Foreach
 netrw
 taglist
+php
+metadata
+drupal
+CommerceOrderEntityController
+uri
+fieldable
+uid
+presave
+nameserver
+resolvconf
+botright
+imap

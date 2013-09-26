@@ -6,6 +6,15 @@ if exists("g:InterfaceWindowsInit")
   endif
 endif
 
+" Init python modules.
+python << EOF
+import sys
+import vim
+# Add path for custom window mofule.
+sys.path.append('/sources/vim/.vim/plugin/interface/windows/')
+import window
+EOF
+
 let g:InterfaceWindowsInit = 1
 
 " Toggle MRU dialog window.
@@ -52,7 +61,7 @@ fun! GetEditWindowNumber()
 
   " Check is there already initialized window & if it's correct use it.
   if exists('g:activeWinNum') && WindowNumValidate(g:activeWinNum)
-    return g:activeWinNum 
+    return g:activeWinNum
   endif
 
   " Reset window variable as window could change it's order.
@@ -88,4 +97,15 @@ fun WindowNumValidate(winnr)
   endif
 
   return 0
+endfun
+
+" Service callback to open window.
+fun WindowOpen(orientation)
+  python << EOF
+import window
+win = window.Window()
+win.open()
+win.getActive()
+
+EOF
 endfun
