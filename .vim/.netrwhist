@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/http/skimium/sites/all/modules/contrib/commerce/modules/order'
-let g:netrw_dirhist_2='/sources/vim/.vim/plugin/interface'
-let g:netrw_dirhist_3='/sources/vim/.vim/plugin/interface/windows'
-let g:netrw_dirhist_4='/http/skimium/sites/all/modules/custom/skimium_commerce/modules/price'
-let g:netrw_dirhist_5='/root'
-let g:netrw_dirhist_6='/root/a.sh'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/http/skimium/sites/all/modules/custom/skimium_commerce/modules/price'
+let g:netrw_dirhist_2='/http/skimium/sites/all'
+let g:netrw_dirhist_3='/http/skimium/sites/all/modules/custom/skimium_commerce'
+let g:netrw_dirhist_4='/http/skimium/sites/all'
+let g:netrw_dirhist_5='/http/skimium/sites/all/modules/contrib'
+let g:netrw_dirhist_6='/http/skimium/sites/all'
+let g:netrw_dirhist_7='/http/skimium/sites/all/modules/custom/skimium_commerce/modules/order'
+let g:netrw_dirhist_8='/http/skimium/sites/all/modules/custom/skimium_site'
