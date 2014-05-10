@@ -1,6 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/sources/c++/GL/drm/vblank'
-let g:netrw_dirhist_2='/sources/c++/GL/drm'
-let g:netrw_dirhist_3='/sources/c++/GL'
-let g:netrw_dirhist_4='/sources/c++/GL/drm/vblank'
+let g:netrw_dirhist_2='/sources/c++/GL/drm/vblank/drm'
+let g:netrw_dirhist_3='/root/ccc'
+let g:netrw_dirhist_4='/etc/nginx/vhosts'
+let g:netrw_dirhist_5='/etc/ld.so.conf.d'
+let g:netrw_dirhist_6='/etc'
+let g:netrw_dirhist_7='/root/.icedtea'
