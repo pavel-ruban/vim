@@ -17,6 +17,7 @@ set nobackup
 set ignorecase
 set hlsearch
 set incsearch
+set complete-=i
 set expandtab
 set tags=/http/skimium/tags
 set shiftwidth=2

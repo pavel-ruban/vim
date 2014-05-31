@@ -28,9 +28,9 @@ else
   nnoremap <silent> <S-TAB> :call MRU_toggle()<CR>
 endif
 
-nmap <silent> <S-Q> :tabn 1 <CR> 
-nmap <silent> <S-W> :tabn 2 <CR> 
-nmap <silent> <S-E> :tabn 3 <CR> 
+"nmap <silent> <S-Q> :tabn 1 <CR> 
+"nmap <silent> <S-W> :tabn 2 <CR> 
+"nmap <silent> <S-E> :tabn 3 <CR> 
 map <S-F7> :w! <CR> :!g++ select.cpp && ./a.out<CR>
 "Mappings.
 imap <silent> [ <C-R>=ArrayInput()<CR>
