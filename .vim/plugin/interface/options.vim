@@ -19,10 +19,11 @@ set hlsearch
 set incsearch
 set complete-=i
 set expandtab
-set tags=/http/skimium/tags
-set shiftwidth=2
+"set tags=/http/skimium/tags
+set shiftwidth=4
+set tabstop=4
 set ai
-set ts=2
+set ts=4
 set number
 set autochdir
 set background=dark
@@ -55,7 +56,7 @@ set nolinebreak
 let g:Tlist_WinWidth=55
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_browse_split = 4
+let g:netrw_browse_split = 0 "4
 let g:netrw_win_width = 40
 
 let g:checksyntax = {

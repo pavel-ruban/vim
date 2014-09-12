@@ -1,10 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/sources/c++/GL/egl/xwindow'
-let g:netrw_dirhist_2='/root'
-let g:netrw_dirhist_3='/root/php'
-let g:netrw_dirhist_4='/sources/linux_configs/.config/awesome'
-let g:netrw_dirhist_5='/sources/linux_configs/.config/awesome/themes'
-let g:netrw_dirhist_6='/sources/linux_configs/.config/awesome/themes/zenburn'
-let g:netrw_dirhist_7='/http/xml'
-let g:netrw_dirhist_8='/binary/http/skimium'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/sources/c++/silk-cpp-engine'
+let g:netrw_dirhist_2='/sources/c++/silk-cpp-engine/engine'
+let g:netrw_dirhist_3='/etc/postfix'
+let g:netrw_dirhist_4='/sources/vim/.vim/plugin'
+let g:netrw_dirhist_5='/sources/vim/.vim/plugin/interface'
+let g:netrw_dirhist_6='/sources/c++/silk-cpp-engine/engine'

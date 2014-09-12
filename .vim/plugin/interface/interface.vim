@@ -20,3 +20,5 @@ exe "so " . g:pluginPath . '/binds/binds.vim'
 exe "so " . g:pluginPath . '/hooks.vim'
 exe "so " . g:pluginPath . '/commands.vim'
 exe "so " . g:pluginPath . '/options.vim'
+
+"exe "so " . g:pluginPath . '/filetype_detect.vim'

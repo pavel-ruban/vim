@@ -131,8 +131,18 @@ class AutoTag:
       self.tags_file = str(vim_global("TagsFile"))
       self.count = 0
       self.stop_at = vim_global("StopAt")
+      
+   def setDefaultTagFile(self):
+      #print("current path is %s" % os.getcwd())
 
+      data = self.findTagFile(os.getcwd())
+
+      if data and data[1]:
+         #print("Setting tagsfile %s " % data[1])
+         vim.command('set tags=%s' % data[1])
+      
    def findTagFile(self, source):
+      source = source.strip(' \n\r\t')
       AutoTag.LOGGER.info('source = "%s"', source)
       ( drive, file ) = os.path.splitdrive(source)
       ret = None
@@ -141,6 +151,9 @@ class AutoTag:
          AutoTag.LOGGER.info('drive = "%s", file = "%s"', drive, file)
          tagsDir = os.path.join(drive, file)
          tagsFile = os.path.join(tagsDir, self.tags_file)
+
+         #print("Detecting tagsfile... it's %s " % tagsFile)
+
          AutoTag.LOGGER.info('tagsFile "%s"', tagsFile)
          if os.path.isfile(tagsFile):
             st = os.stat(tagsFile)
