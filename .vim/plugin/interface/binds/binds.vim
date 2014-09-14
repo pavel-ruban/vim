@@ -13,7 +13,7 @@ let g:Tmux = substitute(g:Tmux,"\\s\\|\\n\\|\\r","","g")
 if g:Tmux != ''
   nnoremap <C-S-Insert> :OScan paste <CR>
   nnoremap <M-C-End> :FufChangeList <CR>
-  nmap <M-C-PageDown> :FufTag<cr>
+ " nnoremap <C-S-n> :FufTag<cr>
   nmap <S-F9> <Plug>ToggleProject
   nnoremap <silent> [19;2~ :TlistToggle <CR>
   nmap <silent>  :OScan changes<CR>
@@ -21,27 +21,36 @@ if g:Tmux != ''
 else
   nnoremap <C-S-Insert> :OScan paste <CR>
   nnoremap <M-C-End> :FufChangeList <CR>
-  nmap <M-C-PageDown> :FufTag<cr>
   nmap <S-F9> <Plug>ToggleProject
   nnoremap <silent> <S-F8> :TlistToggle <CR>
   nmap <silent> <M-TAB> :OScan changes<CR>
   nnoremap <silent> <S-TAB> :call MRU_toggle()<CR>
 endif
 
+" Tools windows.
+nnoremap <silent> <F15> :FufTag<cr>
+nnoremap <silent> <F13> :FufBuffer<CR>
+"nnoremap <silent> <C-n> :OScan changes<CR>
+nnoremap <silent> <C-n> :FufBufferTag<CR>
+nnoremap <silent> <F17> :FufFile<CR>
+nnoremap <silent> <S-F11> :OScan marks<CR>
+
+" Search.
+nmap <silent> <F18> :call SearchPattern(1)<CR>
+nmap <silent> <C-F> :call SearchPattern(0)<CR>
 "nmap <silent> <S-Q> :tabn 1 <CR> 
 "nmap <silent> <S-W> :tabn 2 <CR> 
 "nmap <silent> <S-E> :tabn 3 <CR> 
 map <S-F7> :w! <CR> :!g++ select.cpp && ./a.out<CR>
 "Mappings.
-imap <silent> [ <C-R>=ArrayInput()<CR>
-imap <silent> ( <C-R>=ColumnInput()<CR>
-imap <silent> { <C-R>=ObjectInput()<CR>
-imap <silent> ' <C-R>=QouteInput()<CR>
-imap <silent> " <C-R>=DQouteInput()<CR>
-imap <silent> <CR> <C-R>=CleverEnter()<CR>
-nmap <silent> <leader>s :call SearchPattern()<CR>
+"imap <silent> [ <C-R>=ArrayInput()<CR>
+"imap <silent> ( <C-R>=ColumnInput()<CR>
+"imap <silent> { <C-R>=ObjectInput()<CR>
+"imap <silent> ' <C-R>=QouteInput()<CR>
+"imap <silent> " <C-R>=DQouteInput()<CR>
+"imap <silent> <CR> <C-R>=CleverEnter()<CR>
+"imap  <BS> <C-R>=CleverBackSpace()<CR>
 nmap <silent> <leader>f :call SearchFile()<CR>
-imap  <BS> <C-R>=CleverBackSpace()<CR>
 nmap <leader>a :call AutoNetrwLocate()<cr>
 nmap 8t @=Php_foreach()<CR>
 nmap 8p @=Php_tag()<CR>

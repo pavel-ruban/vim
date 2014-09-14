@@ -12,7 +12,8 @@ au BufLeave * let b:winview = winsaveview()
 au BufRead * if(exists('b:winview')) | call winrestview(b:winview) | exe "normal! zz" | endif
 au vimEnter * let w:tag = 'active'
 au vimEnter * call AutoDetectFileType()
-au BufWinEnter * call InterfaceSetDefaultTag()
+au BufWinEnter * call InterfaceSetDefaultEnvironment()
+au BufReadPost quickfix nnoremap <buffer> <CR> <CR><C-W>p
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
 

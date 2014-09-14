@@ -6,6 +6,7 @@ if exists("g:InterfaceAutocompleteInit")
   endif
 endif
 
+finish
 let g:InterfaceAutocompleteInit = 1
 
 " Enter \r & spaces by need.

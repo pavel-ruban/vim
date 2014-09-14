@@ -517,7 +517,7 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, given_path, ...)
     if v:version >= 700
         if g:grep_path_custom != ''
           let startdir = g:grep_path_custom
-          echo g:grep_path_custom
+          echo "\n" . g:grep_path_custom
         else
           let startdir = input("Start searching from directory: ", cwd, "dir")
         endif
@@ -528,27 +528,28 @@ function! s:RunGrepRecursive(cmd_name, grep_cmd, action, given_path, ...)
         return
     endif
 
-    if filepattern == ""
-        let filepattern = input("Search in files matching pattern: ", 
-                                          \ g:Grep_Default_Filelist)
-        if filepattern == ""
-            return
-        endif
-    endif
-
-    let txt = filepattern . ' '
     let find_file_pattern = ''
-    while txt != ''
-        let one_pattern = strpart(txt, 0, stridx(txt, ' '))
-        if find_file_pattern != ''
-            let find_file_pattern = find_file_pattern . ' -o'
-        endif
-        let find_file_pattern = find_file_pattern . ' -name ' .
-              \ g:Grep_Shell_Quote_Char . one_pattern . g:Grep_Shell_Quote_Char
-        let txt = strpart(txt, stridx(txt, ' ') + 1)
-    endwhile
-    let find_file_pattern = g:Grep_Shell_Escape_Char . '(' .
-                    \ find_file_pattern . ' ' . g:Grep_Shell_Escape_Char . ')'
+   " if filepattern == ""
+   "     let filepattern = input("Search in files matching pattern: ", 
+   "                                       \ g:Grep_Default_Filelist)
+   "     if filepattern == ""
+   "         return
+   "     endif
+   " endif
+
+   " let txt = filepattern . ' '
+   " let find_file_pattern = ''
+   " while txt != ''
+   "     let one_pattern = strpart(txt, 0, stridx(txt, ' '))
+   "     if find_file_pattern != ''
+   "         let find_file_pattern = find_file_pattern . ' -o'
+   "     endif
+   "     let find_file_pattern = find_file_pattern . ' -name ' .
+   "           \ g:Grep_Shell_Quote_Char . one_pattern . g:Grep_Shell_Quote_Char
+   "     let txt = strpart(txt, stridx(txt, ' ') + 1)
+   " endwhile
+   " let find_file_pattern = g:Grep_Shell_Escape_Char . '(' .
+   "                 \ find_file_pattern . ' ' . g:Grep_Shell_Escape_Char . ')'
 
     let txt = g:Grep_Skip_Dirs
     let find_prune = ''

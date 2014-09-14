@@ -1,5 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/python3.4
+import sys
 import vim
+
+#import rpdb2
+#rpdb2.start_embedded_debugger('789987')
 
 class Window:
   width = 20
@@ -66,4 +70,3 @@ class Window:
       self.close()
     else:
       self.open()
-

@@ -10,6 +10,12 @@ let g:InterfaceOptionsInit = 1
 " Get system plugin directory path.
 let pluginPath = expand('<sfile>:p:~:h')
 
+" Escaped sequences mappings.
+set <F13>=[25~
+set <F15>=[27~
+set <F17>=[29~
+set <F18>=[30~
+
 syntax on
 colorscheme lucius
 set t_Co=256
