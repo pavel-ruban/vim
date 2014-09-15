@@ -6743,7 +6743,18 @@ fun! s:NetrwPrevWinOpen(islocal)
   else
    keepj call s:SaveBufVars()
 "   call Decho("wincmd p")
-   wincmd p
+python << EOF
+
+import sys
+import vim
+# Add path for custom window mofule.
+sys.path.append('/sources/vim/.vim/plugin/interface/windows/')
+import window
+ 
+win = window.Window()
+vim.command('%iwincmd w' % win.getActive())
+EOF
+
    keepj call s:RestoreBufVars()
    " if the previous window's buffer has been changed (is modified),
    " and it doesn't appear in any other extant window, then ask the

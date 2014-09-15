@@ -10,12 +10,17 @@ let g:InterfaceInit = 1
 " Get system plugin directory path.
 let g:pluginPath = expand('<sfile>:p:~:h')
 
-
 " Include separate logic.
-exe "so " . g:pluginPath . '/search/search.vim'
-"exe "so " . g:pluginPath . '/autocomplete/autocomplete.vim'
 exe "so " . g:pluginPath . '/windows/windows.vim'
-"exe "so " . g:pluginPath . '/templates/templates.vim'
+py << EOF
+sys.path.append('/sources/vim/.vim/plugin/interface/windows/')
+import window
+win = window.Window()
+EOF
+
+exe "so " . g:pluginPath . '/search/search.vim'
+exe "so " . g:pluginPath . '/autocomplete/autocomplete.vim'
+exe "so " . g:pluginPath . '/templates/templates.vim'
 exe "so " . g:pluginPath . '/binds/binds.vim'
 exe "so " . g:pluginPath . '/options.vim'
 exe "so " . g:pluginPath . '/hooks.vim'

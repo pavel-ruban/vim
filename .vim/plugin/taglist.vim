@@ -1549,7 +1549,7 @@ function! s:Tlist_Window_Init()
 
     " Create buffer local mappings for jumping to the tags and sorting the list
     nnoremap <buffer> <silent> <CR>
-                \ :call <SID>Tlist_Window_Jump_To_Tag('useopen')<CR>
+                \ :call <SID>Tlist_Window_Jump_To_Tag('prevwin')<CR>
     nnoremap <buffer> <silent> o
                 \ :call <SID>Tlist_Window_Jump_To_Tag('newwin')<CR>
     nnoremap <buffer> <silent> p
@@ -1563,7 +1563,7 @@ function! s:Tlist_Window_Init()
                 \ :call <SID>Tlist_Window_Jump_To_Tag('newtab')<CR>
     endif
     nnoremap <buffer> <silent> <2-LeftMouse>
-                \ :call <SID>Tlist_Window_Jump_To_Tag('useopen')<CR>
+                \ :call <SID>Tlist_Window_Jump_To_Tag('prevwin')<CR>
     nnoremap <buffer> <silent> s
                 \ :call <SID>Tlist_Change_Sort('cmd', 'toggle', '')<CR>
     nnoremap <buffer> <silent> + :silent! foldopen<CR>
@@ -1586,10 +1586,10 @@ function! s:Tlist_Window_Init()
 
     " Insert mode mappings
     inoremap <buffer> <silent> <CR>
-                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('useopen')<CR>
+                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('prevwin')<CR>
     " Windows needs return
     inoremap <buffer> <silent> <Return>
-                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('useopen')<CR>
+                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('prevwin')<CR>
     inoremap <buffer> <silent> o
                 \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('newwin')<CR>
     inoremap <buffer> <silent> p
@@ -1603,7 +1603,7 @@ function! s:Tlist_Window_Init()
                 \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('newtab')<CR>
     endif
     inoremap <buffer> <silent> <2-LeftMouse>
-                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('useopen')<CR>
+                \ <C-o>:call <SID>Tlist_Window_Jump_To_Tag('prevwin')<CR>
     inoremap <buffer> <silent> s
                 \ <C-o>:call <SID>Tlist_Change_Sort('cmd', 'toggle', '')<CR>
     inoremap <buffer> <silent> +             <C-o>:silent! foldopen<CR>
@@ -1634,7 +1634,7 @@ function! s:Tlist_Window_Init()
         " not fire the <buffer> <leftmouse> when you use the mouse
         " to enter a buffer.
         let clickmap = ':if bufname("%") =~ "__Tag_List__" <bar> ' .
-                    \ 'call <SID>Tlist_Window_Jump_To_Tag("useopen") ' .
+                    \ 'call <SID>Tlist_Window_Jump_To_Tag("prevwin") ' .
                     \ '<bar> endif <CR>'
         if maparg('<leftmouse>', 'n') == ''
             " no mapping for leftmouse
@@ -3276,7 +3276,12 @@ function! s:Tlist_Window_Open_File(win_ctrl, filename, tagpat)
     if a:win_ctrl == 'prevwin'
         " Open the file in the previous window, if it is usable
         let cur_win = winnr()
-        wincmd p
+
+        py << EOF
+win = window.Window()
+vim.command('%iwincmd w' % win.getActive())
+EOF
+
         if &buftype == '' && !&previewwindow
             exe "edit " . escape(a:filename, ' ')
             let winnum = winnr()

@@ -64,6 +64,35 @@ class Window:
 
     return 0
 
+  # Checks whether active window exists if not - set new active
+  def ensureActiveIsExists(self):
+    #print('start active check')
+    if not self.getActive():
+        winQty = vim.eval('winnr("$")')
+        winnr = vim.eval('winnr()')
+
+        #print('active window is missing %i %i' % (int(winQty), int(winnr)))
+
+        if not winQty:
+            return
+
+        elif winQty == 1:
+            #print('set active window')
+            vim.command('let w:tag = "active"')
+
+        else:
+
+            for i in range(1, int(winQty) + 1):
+                #print('checking window is %i' % i)
+
+                if i == winnr:
+                    continue
+
+                if vim.eval('WindowNumValidate(%i)' % (i)):
+                    #print('set active window is %i' % i)
+                    vim.command('call setwinvar(%i, "tag", "active")' % i)
+                    break
+
   def toggle(self):
     winNum = self.getService()
     if winNum > 0:

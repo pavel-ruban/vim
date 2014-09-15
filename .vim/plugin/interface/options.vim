@@ -62,7 +62,7 @@ set nolinebreak
 let g:Tlist_WinWidth=55
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
-let g:netrw_browse_split = 0 "4
+let g:netrw_browse_split = 4 "4
 let g:netrw_win_width = 40
 
 let g:checksyntax = {
@@ -100,5 +100,17 @@ set undodir=~/.vim/undodir
 
 hi SpellBad guisp=#ffff00 guifg=NONE
 
-let g:Grep_Shell_Quote_Char = '"'
+let g:Grep_Shell_Quote_Char = '"'" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo=/100,h,<10000,@1000,'50,\"1000,:600,%,n~/.viminfo
 setlocal spell spelllang=en_us
+
+" Set a nicer foldtext function
+set foldtext=CustomFoldText()
+
+" viminfo
+
