@@ -2,9 +2,6 @@
 import sys
 import vim
 
-#import rpdb2
-#rpdb2.start_embedded_debugger('789987')
-
 class Window:
   width = 20
   orientation = 'botright'

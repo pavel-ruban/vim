@@ -1,63 +1,71 @@
 if exists("g:InterfaceBindsInit")
-  if (g:InterfaceBindsInit == 1)
     finish
-  endif
 endif
 
 let g:InterfaceBindsInit = 1
 
-let g:Tmux = system('echo $TMUX')
-let g:Tmux = substitute(g:Tmux,"\\s\\|\\n\\|\\r","","g")
+if has('gui_running')
+    nnoremap <C-S-Insert> :OScan paste <CR>
+    nnoremap <silent> <S-F8> :TlistToggle <CR>
+    nnoremap <silent> <S-TAB> :call MRU_toggle()<CR>
 
-" Consider tmux keybinds handling.
-if g:Tmux != ''
-  nnoremap <C-S-Insert> :OScan paste <CR>
-  nnoremap <M-C-End> :FufChangeList <CR>
- " nnoremap <C-S-n> :FufTag<cr>
-  nmap <S-F9> <Plug>ToggleProject
-  nnoremap <silent> [19;2~ :TlistToggle <CR>
-  nmap <silent>  :OScan changes<CR>
-  nnoremap <silent> [Z :call MRU_toggle()<CR>
+    " Tools windows.
+    nnoremap <silent> <F15> :FufTag<cr>
+    nnoremap <silent> <C-TAB> :FufBuffer<CR>
+    nnoremap <silent> <C-N> :FufBufferTag<CR>
+    "nnoremap <silent> <C-S-N> :FufCoverageFile<CR>
+    nnoremap <silent> <C-S-N> :echo 'hey'<CR>
+    nnoremap <silent> <F19> :FufFile<CR>
+    nnoremap <silent> <S-F11> :OScan marks<CR>
+    nnoremap <silent> <F20> :OScan changes<CR>
+
+    " Search.
+    nmap <silent> <F18> :call SearchPattern(1)<CR>
+    nmap <silent> <C-F> :call SearchPattern(0)<CR>
 else
-  nnoremap <C-S-Insert> :OScan paste <CR>
-  nnoremap <M-C-End> :FufChangeList <CR>
-  nmap <S-F9> <Plug>ToggleProject
-  nnoremap <silent> <S-F8> :TlistToggle <CR>
-  nmap <silent> <M-TAB> :OScan changes<CR>
-  nnoremap <silent> <S-TAB> :call MRU_toggle()<CR>
+    let g:Tmux = system('echo $TMUX')
+    let g:Tmux = substitute(g:Tmux,"\\s\\|\\n\\|\\r","","g")
+
+    " Consider tmux keybinds handling.
+    if g:Tmux != ''
+      nnoremap <C-S-Insert> :OScan paste <CR>
+      nnoremap <silent> [19;2~ :TlistToggle <CR>
+      nnoremap <silent> [Z :call MRU_toggle()<CR>
+    else
+      nnoremap <C-S-Insert> :OScan paste <CR>
+      nnoremap <silent> <S-F8> :TlistToggle <CR>
+      nnoremap <silent> <S-TAB> :call MRU_toggle()<CR>
+    endif
+
+    " Tools windows.
+    nnoremap <silent> <F15> :FufTag<cr>
+    nnoremap <silent> <F13> :FufBuffer<CR>
+    nnoremap <silent> <C-n> :FufBufferTag<CR>
+    nnoremap <silent> <F17> :FufCoverageFile<CR>
+    nnoremap <silent> <F19> :FufFile<CR>
+    nnoremap <silent> <S-F11> :OScan marks<CR>
+    nnoremap <silent> <F20> :OScan changes<CR>
+
+    " Search.
+    nmap <silent> <F18> :call SearchPattern(1)<CR>
+    nmap <silent> <C-F> :call SearchPattern(0)<CR>
+
 endif
 
-" Tools windows.
-nnoremap <silent> <F15> :FufTag<cr>
-nnoremap <silent> <F13> :FufBuffer<CR>
-"nnoremap <silent> <C-n> :OScan changes<CR>
-nnoremap <silent> <C-n> :FufBufferTag<CR>
-nnoremap <silent> <F17> :FufFile<CR>
-nnoremap <silent> <S-F11> :OScan marks<CR>
+" Compile
+map <S-F7> :w \| silent! make \| e<CR>
+map <C-S-F7> :w \| silent! make \| e \| exe "!" . g:InterfacePrjPath . "silk"<CR>
 
-" Search.
-nmap <silent> <F18> :call SearchPattern(1)<CR>
-nmap <silent> <C-F> :call SearchPattern(0)<CR>
-"nmap <silent> <S-Q> :tabn 1 <CR> 
-"nmap <silent> <S-W> :tabn 2 <CR> 
-"nmap <silent> <S-E> :tabn 3 <CR> 
-map <S-F7> :w! <CR> :!g++ select.cpp && ./a.out<CR>
-"Mappings.
-"imap <silent> [ <C-R>=ArrayInput()<CR>
-"imap <silent> ( <C-R>=ColumnInput()<CR>
-"imap <silent> { <C-R>=ObjectInput()<CR>
-"imap <silent> ' <C-R>=QouteInput()<CR>
-"imap <silent> " <C-R>=DQouteInput()<CR>
-"imap <silent> <CR> <C-R>=CleverEnter()<CR>
-"imap  <BS> <C-R>=CleverBackSpace()<CR>
-nmap <silent> <leader>f :call SearchFile()<CR>
-nmap <leader>a :call AutoNetrwLocate()<cr>
+" Templates
 nmap 8t @=Php_foreach()<CR>
 nmap 8p @=Php_tag()<CR>
 nmap 8i @=Php_html_if()<CR>
 nmap 8I @=Php_if()<CR>
 nmap 8c @=Php_comment()<CR>
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+" Tools
+nmap <leader>a :call AutoNetrwLocate()<cr>
 nmap cp :let @" = expand("%")<CR>
 nnoremap <S-F4> :%s/\s\+$//<CR>
 nnoremap <S-F3> :!tail -n 30 /var/log/httpd/error.log <CR>
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>

@@ -12,6 +12,7 @@ let g:pluginPath = expand('<sfile>:p:~:h')
 
 " Include separate logic.
 exe "so " . g:pluginPath . '/windows/windows.vim'
+
 py << EOF
 sys.path.append('/sources/vim/.vim/plugin/interface/windows/')
 import window

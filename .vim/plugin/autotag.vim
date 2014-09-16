@@ -27,6 +27,8 @@ import time
 import logging
 from collections import defaultdict
 
+import rpdb2
+
 # global vim config variables used (all are g:autotag<name>):
 # name purpose
 # maxTagsFileSize a cap on what size tag file to strip etc
@@ -131,22 +133,25 @@ class AutoTag:
       self.tags_file = str(vim_global("TagsFile"))
       self.count = 0
       self.stop_at = vim_global("StopAt")
-      
+
    def setDefaultTagFile(self):
       #print("current path is %s" % os.getcwd())
-
       data = self.findTagFile(os.getcwd())
 
       if data and data[1]:
          #print("Setting tagsfile %s " % data[1])
          vim.command('set tags=%s' % data[1])
-      
+
+
    def findTagFile(self, source):
       source = source.strip(' \n\r\t')
       AutoTag.LOGGER.info('source = "%s"', source)
       ( drive, file ) = os.path.splitdrive(source)
       ret = None
       while file:
+         if 'interfaceDebug' in globals():
+            rpdb2.start_embedded_debugger('789987')
+
          file = os.path.dirname(file)
          AutoTag.LOGGER.info('drive = "%s", file = "%s"', drive, file)
          tagsDir = os.path.join(drive, file)

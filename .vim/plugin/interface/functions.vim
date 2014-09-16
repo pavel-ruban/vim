@@ -12,11 +12,12 @@ func! InterfaceSetDefaultEnvironment()
 
         python << EOF
 autotag = AutoTag();
-data = autotag.findTagFile(os.getcwd())
+data = autotag.findTagFile(vim.eval("expand('%:p')"))
 
 if data:
     if data[0]:
         vim.command('let g:interfacePrjPath="%s"' % data[0])
+        vim.command('set makeprg=scons\ -C\ %s"' % data[0])
 
     if data[1]:
         vim.command('set tags=%s' % data[1])
