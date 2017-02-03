@@ -1,0 +1,1 @@
+/sources/cnc/vim-linuxcnc-hal-syntax/syntax/linuxcnc-hal.vim
