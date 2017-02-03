@@ -537,17 +537,23 @@ function! s:MRU_Window_Edit_File(fname, multi, edit_type, open_type)
             if g:MRU_Auto_Close == 1 && g:MRU_Use_Current_Window == 0
                 " Jump to the window from which the MRU window was opened
                 if exists('s:MRU_last_buffer')
-                    let last_winnr = bufwinnr(s:MRU_last_buffer)
-                    if last_winnr != -1 && last_winnr != winnr()
-                        exe last_winnr . 'wincmd w'
-                    endif
+        python << EOF
+win = window.Window()
+active = win.getActive()
+vim.command('let last_winnr = %i' % active)
+vim.command('%iwincmd w' % active)
+EOF
                 endif
             else
                 if g:MRU_Use_Current_Window == 0
                     " Goto the previous window
                     " If MRU_Use_Current_Window is set to one, then the
                     " current window is used to open the file
-                    wincmd p
+        python << EOF
+win = window.Window()
+active = win.getActive()
+vim.command('%iwincmd w' % active)
+EOF
                 endif
             endif
 

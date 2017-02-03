@@ -1,0 +1,57 @@
+"set tags=~/prj/lotep/site/tags
+"set tags=~/prj/lex4me/tags
+"set tags=~/prj/geopolis/tags
+"set tags=/http/le360/public/tags
+"set tags=/http/tehnovosti/tags
+"set tags=~/php-tags/tags
+
+" Mappings :
+" Press Space to turn off highlighting and clear any message already displayed.
+"nmap nm :OScan changes <CR><CR>
+
+"imap { {<cr>.<cr>}<up><left><del><space><space>
+"nmap <S-F9>  :new ~/.vimprojects <CR>
+"command! -nargs=2 G :vimgrep /<args>/ ~/prj/geopolis/sites/all/<args> | :copen
+
+
+" Vatiables :
+
+"let g:vdebug_options = {"port":9001}
+
+" Taglist window width.
+
+"au WinEnter * let path = getcwd() | let netrwWinNum = bufwinnr('NetrwTreeListing') |
+"\ if (netrwWinNum != -1) | let curbufnum = bufnr('%') | exe netrwWinNum . ' wincmd w'
+"\ | let curwinnum = bufwinnr(curbufnum) | exe "e " . path | exe curwinnum . ' wincm w' | endif
+
+"au BufRead * call AutoNetrwLocate()
+"au WinEnter * call AutoNetrwLocate()
+
+" set log
+"set verbosefile=~/.vimlog
+"set verbose=2000
+
+
+" Set color column to see too long lines.
+"colorscheme lucius
+"set tags=/http/skimium/tags
+"let g:proj_flags = "imstF"
+
+let g:vdebug_options = {
+\ "port" : 9000,
+\ "server" : 'terminal',
+\ "timeout" : 20,
+\ "on_close" : 'detach',
+\ "break_on_open" : 1,
+\ "ide_key" : '',
+\ "path_maps" : {},
+\ "debug_window_level" : 0,
+\ "debug_file_level" : 0,
+\ "debug_file" : "",
+\ "watch_window_style" : 'compact',
+\ "marker_default" : '⬦',
+\ "marker_closed_tree" : '▸',
+\ "marker_open_tree" : '▾',
+\ "continuous_mode" : 1,
+\}
+

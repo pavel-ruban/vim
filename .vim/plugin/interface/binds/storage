@@ -1,0 +1,18 @@
+"nmap <silent> <S-Q> :tabn 1 <CR>
+"nmap <silent> <S-W> :tabn 2 <CR>
+"nmap <silent> <S-E> :tabn 3 <CR>
+"Mappings.
+"imap <silent> [ <C-R>=ArrayInput()<CR>
+"imap <silent> ( <C-R>=ColumnInput()<CR>
+"imap <silent> { <C-R>=ObjectInput()<CR>
+"imap <silent> ' <C-R>=QouteInput()<CR>
+"imap <silent> " <C-R>=DQouteInput()<CR>
+"imap <silent> <CR> <C-R>=CleverEnter()<CR>
+"imap  <BS> <C-R>=CleverBackSpace()<CR>
+"nnoremap <M-C-End> :FufChangeList <CR>
+"nmap <S-F9> <Plug>ToggleProject
+"nmap <silent> <M-TAB> :OScan changes<CR>
+"nnoremap <M-C-End> :FufChangeList <CR>
+" nnoremap <C-S-n> :FufTag<cr>
+"nmap <S-F9> <Plug>ToggleProject
+"nmap <silent>  :OScan changes<CR>

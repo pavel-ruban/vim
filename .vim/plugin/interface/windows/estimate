@@ -1,0 +1,29 @@
+Resell price intervals:
+  Создать КТ 1,5
+  Создать вьюс, хендлеры, 1,5
+  вывести формы рудактирования, сделать формы конфирмации на удаление, сделать форму редактирования - 2
+  валидацию по интерференции интеравалов - 1,2
+  интегрировать функционал с логикой расета реселл цены при импорте - 1,5
+
+  7,7 * 1.6 = 12,3
+
+Category parent coeff
+  get coeff functinon 3
+  integrate with rules calculation new callback 1
+  add fields to term & product, create features 1
+  batch for catalog page & new submit actioni 3
+  update all imported content 3
+
+  11 * 1,6 = 17,6
+
+User fields validation
+  check required state of all fields  0,8
+  trim all text input data 1,5
+  remove format check for phone fields & postal code  0,5
+  IBAN field validation for french & andorran users 0,6
+  institution autofill for french & andorran users 0,4
+  code guichet  autofill for french & andorran users 0,4
+  iban account number  autofill for french & andorran users 0,4
+  login name & raison socialy unique 0,5
+
+  5.1 * 1.6 = 8,2

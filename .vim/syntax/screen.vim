@@ -1,7 +1,9 @@
 " Vim syntax file
 " Language:         screen(1) configuration file
-" Maintainer:       Nikolai Weibull <now@bitwi.se>
-" Latest Revision:  2010-01-03
+" Maintainer:       Jessica K McIntosh AT gmail DOT com
+" Last Changed:     Fri Nov 22 05:08 AM 2013 EST
+" Description:
+" A copy of the default screen.vim syntax file with personal aditions.
 
 if exists("b:current_syntax")
   finish
@@ -28,8 +30,13 @@ syn keyword screenBoolean   on off
 
 syn match   screenNumbers   display '\<\d\+\>'
 
-syn match   screenSpecials  contained
+"syn match   screenOptions   "\w\@<!-\a\>"
+syn match   screenOptions   "\s\@<=-\a\>"
+
+syn match   screenSpecial   contained
                           \ '%\%([%aAdDhlmMstuwWyY?:{]\|[0-9]*n\|0?cC\)'
+
+syn keyword screenOperators connect extended lastline string
 
 syn keyword screenCommands
                           \ acladd
@@ -237,8 +244,10 @@ hi def link screenLiteral   String
 hi def link screenVariable  Identifier
 hi def link screenBoolean   Boolean
 hi def link screenNumbers   Number
-hi def link screenSpecials  Special
+hi def link screenSpecial   Special
 hi def link screenCommands  Keyword
+hi def link screenOptions   Function
+hi def link screenOperators Statement
 
 let b:current_syntax = "screen"
 

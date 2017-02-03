@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/root'
+let g:netrw_dirhist_2='/sources/c++/silk-cpp-engine/engine'
+let g:netrw_dirhist_3='/sources/c++/silk-cpp-engine/engine/brushes'
+let g:netrw_dirhist_4='/sources/c++/silk-cpp-engine/engine'
+let g:netrw_dirhist_5='/sources/c++/silk-cpp-engine'
+let g:netrw_dirhist_6='/sources/c++/silk-cpp-engine/engine'
+let g:netrw_dirhist_7='/sources/c++/silk-cpp-engine'

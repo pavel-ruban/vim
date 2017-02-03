@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/sources/vim/.vim/plugin/interface/windows'
+let g:netrw_dirhist_2='/sources/c++/GL/egl/xwindow'
+let g:netrw_dirhist_3='/home/noname/Downloads/bcc/bcc'
