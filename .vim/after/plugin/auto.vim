@@ -3,10 +3,10 @@
 "loadview
 set background=dark
 
-let g:vdebug_options["marker_default"]='•'
-let g:vdebug_options["marker_closed_tree"]='+'
-let g:vdebug_options["marker_open_tree"]='-'
-let g:vdebug_options["break_on_open"]=0
+"let g:vdebug_options["marker_default"]='•'
+"let g:vdebug_options["marker_closed_tree"]='+'
+"let g:vdebug_options["marker_open_tree"]='-'
+"let g:vdebug_options["break_on_open"]=0
 
 "exec 'SyntasticToggleMode'
 "colorscheme tir_black

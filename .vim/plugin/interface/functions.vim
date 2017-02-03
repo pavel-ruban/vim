@@ -11,8 +11,11 @@ func! InterfaceSetDefaultEnvironment()
     if exists("g:autotag_vim_version_sourced") && has("python")
 
         python << EOF
-autotag = AutoTag();
-data = autotag.findTagFile(vim.eval("expand('%:p')"))
+at = autotag.AutoTag();
+data = at.findTagFile(vim.eval("expand('%:p')"))
+
+# Debug
+#print(data)
 
 if data:
     if data[0]:
@@ -20,6 +23,7 @@ if data:
         vim.command('set makeprg=scons\ -C\ %s"' % data[0])
 
     if data[1]:
+    	#print('setting tags %s' % ('set tags=%s' % data[1]))
         vim.command('set tags=%s' % data[1])
 
 EOF
@@ -67,4 +71,35 @@ function! ResCur()
     normal! g`"
     return 1
   endif
+endfunction
+
+"function! BindMakePrj(...)
+"	if a:0 > 0
+"		if a:1 == 'debug'
+"			exe "set makeprg=scons\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8\\ --debugger"
+"		elseif a:1 == 'profile'
+"			exe "set makeprg=scons\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8\\ --profiler"
+"		end
+"	else
+"		exe "set makeprg=scons\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8"
+"	end
+"endfunction
+"
+
+function! BindMakePrj(...)
+	if a:0 > 0
+		if a:1 == 'debug'
+			exe "set makeprg=make\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8\\ d"
+		elseif a:1 == 'flash'
+			exe "set makeprg=make\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8\\ flash"
+		elseif a:1 == 'clean'
+			exe "set makeprg=make\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8\\ clean"
+		elseif a:1 == 'optimized'
+			exe "set makeprg=make\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8\\ o"
+		elseif a:1 == 'gdb'
+			exe "set makeprg=make\\ -C\\ " . g:interfacePrjPath . "\\ debug"
+		end
+	else
+			exe "set makeprg=make\\ -C\\ " . g:interfacePrjPath . "\\ -j\\ 8"
+	end
 endfunction

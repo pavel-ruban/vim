@@ -40,11 +40,12 @@ else
  let s:blu = "155"
  let s:lblue = "159"
  let s:new = "5"
+ let s:termdef = "253"
  let s:brown = "144"
  let s:lyel = "229"
  let s:lpur = "183"
  let s:cya = "15"
- 
+
  " New color vars.
  let s:red = "216"
  let s:cya = "87"
@@ -59,7 +60,7 @@ endif
 
 "{{{
 " C++ lang's keywords
-exe "hi Normal" . s:v . 'fg = ' . s:new . s:v . 'bg = none'
+exe "hi Normal" . s:v . 'fg = ' . s:whi . s:v . 'bg = none'
 exe "hi Comment" . s:v . 'fg = ' . s:new . s:v . 'bg = none'
 exe "hi DoxygenComment" . s:v . 'fg = ' . s:new . s:v . 'bg = none'
 exe "hi DoxygenKeyword" . s:v . 'fg = ' . s:new . s:v . 'bg = none'
@@ -88,7 +89,7 @@ exe "hi Class" . s:v . 'fg = ' . s:lblue . s:v . 'bg = none'
 exe "hi CTagsClass" . s:v . 'fg = ' . s:lblue . s:v . 'bg = none'
 exe "hi SpellBad" . s:v . 'fg = ' . s:lpur . s:v . 'bg = 0'
 exe "hi SpellCap" . s:v . 'fg = ' . s:lblue . s:v . 'bg = 0'
-exe "hi Normal" . s:v . 'fg = ' . s:whi
+"exe \"hi Normal\" . s:v . 'fg = ' . s:whi
 
 exe "hi NonText" . s:v . 'fg = ' . s:gr1 . s:v . ' = NONE'
 exe "hi ErrorMsg" . s:v . 'bg = ' . s:red
@@ -121,10 +122,10 @@ exe "hi CursorLine" . s:v . 'bg = ' . s:gr2 . s:v . ' = NONE'
 exe "hi TabLine" . s:v . 'fg = ' . s:gr1 . s:v . 'bg = none' . s:v . ' = NONE'
 exe "hi TabLineSel" . s:v . 'fg = fg' . s:v . 'bg = none' . s:v . ' = NONE'
 exe "hi TabLineFill" . s:v . 'fg = ' . s:bla . s:v . 'bg = none' . s:v . ' = NONE'
-exe "hi ColorColumn" . s:v . 'bg = ' . s:gr2 . s:v . ' = NONE'
+exe "hi ColorColumn" . s:v . 'bg = NONE' . s:v . ' = NONE'
 
 exe "hi MatchParen" . s:v . 'fg = ' . s:bla . s:v . 'bg = ' . s:bro
-exe "hi Comment" . s:v . 'fg = ' . s:gr1
+exe "hi Comment" . s:v . 'fg = ' . s:termdef
 exe "hi Constant" . s:v . 'fg = ' . s:pur
 exe "hi Error" . s:v . 'fg = ' . s:lpur . s:v . 'bg = 0'
 exe "hi Identifier" . s:v . 'fg = ' . s:cya . s:v . ' = NONE'
@@ -152,5 +153,10 @@ exe "hi sqlParenEmpty" . s:v . 'fg = ' . s:green
 exe "hi sqlType" . s:v . 'fg = ' . s:blue
 exe "hi sqlError" . s:v . 'fg = ' . s:red
 exe "hi sqlSpecial" . s:v . 'fg = ' . s:blue
+
+hi halComponent ctermfg=155
+hi halSignal ctermfg=172
+hi halThread ctermfg=229
+hi halSigDir ctermfg=229
 
 "}}}

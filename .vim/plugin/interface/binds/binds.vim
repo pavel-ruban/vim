@@ -14,10 +14,19 @@ if has('gui_running')
     nnoremap <silent> <C-TAB> :FufBuffer<CR>
     nnoremap <silent> <C-N> :FufBufferTag<CR>
     "nnoremap <silent> <C-S-N> :FufCoverageFile<CR>
-    nnoremap <silent> <C-S-N> :echo 'hey'<CR>
+    nnoremap <silent> <C-S-N> :FufCoverageFile<CR>
     nnoremap <silent> <F19> :FufFile<CR>
     nnoremap <silent> <S-F11> :OScan marks<CR>
+
     nnoremap <silent> <F20> :OScan changes<CR>
+    nnoremap <silent> <F21> :echo 'it"s F21'<CR>
+    nnoremap <silent> <F22> :echo 'it"s F22'<CR>
+    nnoremap <silent> <F23> :echo 'it"s F23'<CR>
+    nnoremap <silent> <F24> :echo 'it"s F24'<CR>
+    nnoremap <silent> <F25> :echo 'it"s F25'<CR>
+    nnoremap <silent> <F26> :echo 'it"s F26'<CR>
+    nnoremap <silent> <F27> :echo 'it"s F27'<CR>
+    nnoremap <silent> <F28> :echo 'it"s F28'<CR>
 
     " Search.
     nmap <silent> <F18> :call SearchPattern(1)<CR>
@@ -53,8 +62,38 @@ else
 endif
 
 " Compile
-map <S-F7> :w \| silent! make \| e<CR>
-map <C-S-F7> :w \| silent! make \| e \| exe "!" . g:InterfacePrjPath . "silk"<CR>
+"map <S-F7> :w \| silent! make \| e<CR>
+"map <S-F6> :w \| silent! exe "!scons debug=1 -C " . g:interfacePrjPath \| e<CR>
+"map <C-S-F6> :w \| silent! exe "!scons debug=1 -C " . g:interfacePrjPath \| exe "!" . g:interfacePrjPath . "/silk" \| e<CR>
+"map <C-S-F7> :w \| silent! make \| exe "!" . g:interfacePrjPath . "/silk" \| e<CR>
+
+"map <S-F5> :w \| call BindMakePrj('profile') \| silent! make \| e<CR>
+"map <C-S-F5> :w \| call BindMakePrj('profile') \| silent! make \| exe "!" . g:interfacePrjPath . "/silk" \| e<CR>
+"
+"map <S-F6> :w \| call BindMakePrj('debug') \| silent! make \| e<CR>
+"map <C-S-F6> :w \| call BindMakePrj('debug') \| silent! make \| exe "!" . g:interfacePrjPath . "/silk" \| e<CR>
+"
+"map <S-F7> :w \| call BindMakePrj() \| silent! make \| e<CR>
+"map <C-S-F7> :w \| call BindMakePrj() \| silent! make \| exe "!" . g:interfacePrjPath . "/silk" \| e<CR>
+
+map <S-F5> :w \| call BindMakePrj('clean') \| make \| e<CR>
+map <C-S-F5> :w \| call BindMakePrj('optmized') \| make \| e<CR>
+
+map <S-F6> :w \| call BindMakePrj('debug') \| make \| e<CR>
+map <C-S-F6> :w \| call BindMakePrj('gdb') \| make \| e<CR>
+
+map <S-F7> :w \| call BindMakePrj('flash') \| make \| e<CR>
+"map <C-S-F7> :w \| call BindMakePrj() \| silent! make \| exe "!" . g:interfacePrjPath . "/silk" \| e<CR>
+"map <C-S-F8> :w \| silent! make \| e \| exe "!" . g:interfacePrjPath . "/silk"<CR>
+
+nmap <C-DOWN> :GitGutterNextHunk<CR>
+nmap <C-UP> :GitGutterPrevHunk<CR>
+
+
+nnoremap <Leader>s :%s/<C-R><C-W>//g<Left><Left>
+
+nnoremap <M-LEFT> :tabprevious<CR>
+nnoremap <M-RIGHT> :tabnext<CR>
 
 " Templates
 nmap 8t @=Php_foreach()<CR>

@@ -2700,7 +2700,7 @@ function! s:Tlist_Window_Toggle()
     " If taglist window is open then close it.
     let winnum = bufwinnr(g:TagList_title)
     let curbufnum = bufnr('%')
-    let project_winnum = bufwinnr("projects")
+    let project_winnum = bufwinnr("^projects$")
     let netrw_winnum = bufwinnr("NetrwTreeListing")
     if netrw_winnum == -1
       let check_cur_buf = buffer_name('%')
@@ -2715,7 +2715,8 @@ function! s:Tlist_Window_Toggle()
     endif
     if netrw_winnum != -1
         let s:return = 1
-        call s:Netrw_Window_Close()
+
+	call s:Netrw_Window_Close()
     endif
     if project_winnum != -1
         let s:return = 1

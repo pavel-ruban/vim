@@ -18,17 +18,17 @@ set t_Co=256
 set nobackup
 set complete-=i
 
-set expandtab
-set shiftwidth=4
-set tabstop=4
+set noexpandtab
+set shiftwidth=0
+set tabstop=8
 set ai
-set ts=4
 
 set background=dark
 set number
 set autochdir
 set mouse=a
 
+let g:autotagmaxTagsFileSize = 1024 * 1024 * 1024 " 1 Gb
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Compact_Format  = 0
 let s:tlist_def_php_settings = 'php;c:class;d:constant;v:variable;f:function'
@@ -95,8 +95,27 @@ set hi=10000
 set undofile
 set undodir=~/.vim/undodir
 
-hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+hi ColorColumn ctermbg=none guibg=lightgrey
 hi SpellBad guisp=#ffff00 guifg=NONE
+
+"\ \"marker_default\" : '<U+2B26>',
+let g:vdebug_options = {
+\ "port" : 9000,
+\ "server" : 'terminal',
+\ "timeout" : 20,
+\ "on_close" : 'detach',
+\ "break_on_open" : 1,
+\ "ide_key" : '',
+\ "path_maps" : {},
+\ "debug_window_level" : 0,
+\ "debug_file_level" : 0,
+\ "debug_file" : "",
+\ "watch_window_style" : 'compact',
+\ "marker_default" : '+',
+\ "marker_closed_tree" : '▸',
+\ "marker_open_tree" : '▾',
+\ "continuous_mode" : 1,
+\}
 
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
@@ -104,8 +123,10 @@ hi SpellBad guisp=#ffff00 guifg=NONE
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
 set viminfo=/100,h,<10000,@1000,'50,\"1000,:600,%,n~/.viminfo
-setlocal spell spelllang=en_us
+setlocal spell spelllang=en_us,ru_ru
+set spelllang=en,ru
 
 " Set a nicer foldtext function
 set foldtext=CustomFoldText()
-set makeprg=scons
+
+"exe \"set makeprg=scons\\ -C\\ " . g:interfacePrjPath
